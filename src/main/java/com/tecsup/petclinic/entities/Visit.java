@@ -1,20 +1,17 @@
 package com.tecsup.petclinic.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
-/**
- * 
- * @author jgomezm
- *
- */
 @NoArgsConstructor
 @Entity(name = "visits")
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 public class Visit {
 
 	@Id
@@ -29,6 +26,10 @@ public class Visit {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pet_id")
-	//@ToString.Exclude
+	@JsonIgnoreProperties({
+			"visits",
+			"hibernateLazyInitializer",
+			"handler"
+	})
 	private Pet pet;
 }

@@ -1,9 +1,9 @@
 package com.tecsup.petclinic.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 import java.util.Date;
@@ -16,7 +16,11 @@ import java.util.Set;
  */
 @NoArgsConstructor
 @Entity(name = "pets")
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Pet {
 
 	@Id
@@ -38,8 +42,7 @@ public class Pet {
 
 
 	@OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@ToString.Exclude
-	//@EqualsAndHashCode.Exclude
+	@JsonIgnore
 	private Set<Visit> visits;
 
 //	@ManyToOne(fetch = FetchType.LAZY)

@@ -1,21 +1,19 @@
 package com.tecsup.petclinic.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Set;
 
 /**
- * 
+ *
  * @author jgomezm
  *
  */
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity(name = "specialties")
-@Data
 public class Specialty {
 
 	@Id
@@ -27,6 +25,6 @@ public class Specialty {
 
 	@ManyToMany(mappedBy = "specialties", fetch = FetchType.LAZY)
 	@ToString.Exclude
-	//@EqualsAndHashCode.Exclude
+	@EqualsAndHashCode.Exclude
 	private Set<Vet> vets;
 }

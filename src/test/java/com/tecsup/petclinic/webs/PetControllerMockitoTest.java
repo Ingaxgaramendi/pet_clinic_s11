@@ -40,7 +40,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Slf4j
 public class PetControllerMockitoTest {
 
-    private static final ObjectMapper om = new ObjectMapper();
+	private static final ObjectMapper om =
+			new ObjectMapper().findAndRegisterModules();
 
 	@Autowired
 	private MockMvc mockMvc;

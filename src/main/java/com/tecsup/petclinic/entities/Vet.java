@@ -1,8 +1,7 @@
 package com.tecsup.petclinic.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
@@ -11,9 +10,12 @@ import java.util.Set;
  * @author jgomezm
  *
  */
+@Getter
+@Setter
 @NoArgsConstructor
+@ToString(exclude = "specialties")
+@EqualsAndHashCode(exclude = "specialties")
 @Entity(name = "vets")
-@Data
 public class Vet {
 
 	@Id
